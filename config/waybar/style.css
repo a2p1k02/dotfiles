@@ -1,0 +1,184 @@
+
+@keyframes blink-warning {
+    70% {
+        color: @text;
+    }
+
+    to {
+        color: @text;
+        background-color: @yellow;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: @text;
+    }
+
+    to {
+        color: @text;
+        background-color: @red;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Styles
+ * -------------------------------------------------------------------------- */
+
+/* COLORS */
+
+@define-color rosewater #f4dbd6;
+@define-color flamingo #f0c6c6;
+@define-color pink #f5bde6;
+@define-color mauve #c6a0f6;
+@define-color red #ed8796;
+@define-color maroon #ee99a0;
+@define-color peach #f5a97f;
+@define-color yellow #eed49f;
+@define-color green #a6da95;
+@define-color teal #8bd5ca;
+@define-color sky #91d7e3;
+@define-color sapphire #7dc4e4;
+@define-color blue #8aadf4;
+@define-color lavender #b7bdf8;
+@define-color text #cad3f5;
+@define-color subtext1 #b8c0e0;
+@define-color subtext0 #a5adcb;
+@define-color overlay2 #939ab7;
+@define-color overlay1 #8087a2;
+@define-color overlay0 #6e738d;
+@define-color surface2 #5b6078;
+@define-color surface1 #494d64;
+@define-color surface0 #363a4f;
+@define-color base #24273a;
+@define-color mantle #1e2030;
+@define-color crust #181926;
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 3px;
+    min-height: 0;
+    margin: 0.1em 0.3em 0.1em 0.3em;
+}
+
+/* The whole bar */
+#waybar {
+    border-radius: 3px;
+    background: @base;
+    color: @text;
+    font-family: "JetBrains Mono", "Font Awesome 5 Pro";
+    font-size: 10px;
+    /*font-weight: bold;*/
+}
+
+/* Each module */
+#clock,
+#cpu,
+#network,
+#pulseaudio,
+#tray,
+#language {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+}
+
+/* Each critical module */
+#cpu.critical {
+    color: @red;
+}
+
+/* Each warning */
+#network.disconnected,
+#cpu.warning {
+    background: @yellow;
+    color: @surface0;
+}
+
+#workspaces {
+    color: @text;
+}
+
+#workspaces button {
+    font-weight: bold; /* Somewhy the bar-wide setting is ignored*/
+    padding: 2;
+    color: @text;
+    opacity: 0.9;
+    background: none;
+    font-size: 1em;
+}
+
+#workspaces button.focused {
+    background: @subtext0;
+    color: @text;
+    opacity: 1;
+    padding: 0 0.4em;
+}
+
+#workspaces button.urgent {
+    border-color: @surface0;
+    color: @red;
+    opacity: 1;
+}
+
+#window {
+    margin-right: 40px;
+    margin-left: 40px;
+    font-weight: normal;
+}
+
+#network {
+    color: @mauve;
+    background: @surface0;
+}
+
+#cpu {
+    background: @surface0;
+    color: @sky;
+}
+
+#cpu.critical {
+    color: @red;
+    background: @surface0;
+}
+
+#language {
+    color: @green;
+    background: @surface0;
+    padding: 0 0.2em;
+}
+
+#clock {
+    color: @blue;
+    background: @surface0;
+}
+
+#clock.date {
+    background: @mauve;
+}
+
+#clock.time {
+    background: @surface0;
+}
+
+#pulseaudio { /* Unsused but kept for those who needs it */
+    color: @maroon;
+    background: @surface0;
+}
+
+#pulseaudio.muted {
+    background: #BF616A;
+    color: #BF616A;
+    /* No styles */
+}
+#pulseaudio.source-muted {
+    background: #D08770;
+    color: #D8DEE9;
+    /* No styles */
+}
+
+#tray {
+    background: @surface0;
+}
+

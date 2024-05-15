@@ -1,0 +1,107 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "margin": 10,
+    // "height": 36, // Waybar height (to be removed for auto height)
+    // Archived modules
+    // "custom/gpu", "bluetooth",  "custom/weather", "temperature", "sway/window"
+    // Choose the order of the modules
+    //"modules-left": [ "clock", "hyprland/language"],
+    //"modules-center": ["hyprland/workspaces"],
+    //"modules-right": [ "cpu", "temperature", "pulseaudio", "network", "tray"],
+    "modules-left": [ "hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [ "cpu", "temperature", "network", "hyprland/language", "pulseaudio","clock", "tray"],
+    // Modules configuration
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "all-outputs": true,
+        "format": "{icon}",
+        "sort-by-number": true,
+        "format-icons": {
+            "1": "<span color=\"#FFFFFF\">一</span>",
+            "2": "<span color=\"#FFFFFF\">二</span>",
+            "3": "<span color=\"#FFFFFF\">三</span>",
+            "4": "<span color=\"#FFFFFF\">四</span>",
+            "5": "<span color=\"#FFFFFF\">五</span>",
+            "6": "<span color=\"#FFFFFF\">六</span>",
+            "7": "<span color=\"#FFFFFF\">七</span>",
+            "8": "<span color=\"#FFFFFF\">八</span>",
+            "9": "<span color=\"#FFFFFF\">九</span>",
+            "10": "<span color=\"#FFFFFF\">十</span>",
+        }
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50, 
+        "tooltip": false
+    },    
+    "hyprland/language": {
+        "format": "<big></big> {}",
+        "max-length": 20,
+        "min-length": 15,        
+    },
+    "tray": {
+        //"icon-size": 11,
+        "spacing": 5
+    },
+    "clock": {
+        "interval": "1",
+        "format": "  {:%H:%M:%S   %e %b}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "today-format": "<b>{}</b>",
+        "on-click": "gnome-calendar"
+    },
+    "cpu": {
+        "interval": "1",      
+        "format": "  {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+        "max-length": 13,
+        "min-length": 13,
+        "on-click": "alacritty -e htop --sort-key PERCENT_CPU",
+        "tooltip": false
+    },
+    "temperature": {
+        //"thermal-zone": 1,
+        "interval": "4",
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 74,
+        "format-critical": "  {temperatureC}°C",
+        "format": "{icon}  {temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "max-length": 7,
+        "min-length": 7
+    },
+    "network": {
+        // "interface": "wlan0", // (Optional) To force the use of this interface,
+        "format-wifi": "  {essid}",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "family": "ipv4",
+        "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n {bandwidthUpBits}  {bandwidthDownBits}"
+    },
+    "pulseaudio": {
+        "scroll-step": 3, // %, can be a float
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        //"format-source": "{volume}% ",
+        //"format-source-muted": "",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+    },
+}
