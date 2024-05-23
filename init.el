@@ -49,6 +49,9 @@
 
 (dashboard-setup-startup-hook)
 
+(load-theme 'catppuccin :no-confirm)
+(setq catppuccin-flavor 'macchiato) ;; 'frappe, 'latte, 'macchiato, or 'mocha
+
 (defun dashboard-line-generator (list-size)
   (insert ""))
  
@@ -64,12 +67,12 @@
 (setq dashboard-set-navigator t)
 
 ;; Format: "(icon title help action face prefix suffix)"
-(setq dashboard-navigator-buttons
-      `(;; line1
-        ((,(all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0)
-         "Homepage"
-         "Browse homepage"
-         (lambda (&rest _) (browse-url "https://github.com/a2p1k02"))))))
+;;(setq dashboard-navigator-buttons
+;;      `(;; line1
+;;        ((,(all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0)
+;;         "Homepage"
+;;         "Browse homepage"
+;;         (lambda (&rest _) (browse-url "https://github.com/a2p1k02"))))))
 
 (setq dashboard-set-init-info t)
 
@@ -108,9 +111,6 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(custom-enabled-themes '(spacemacs-dark))
- '(custom-safe-themes
-   '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(package-selected-packages
    '(slime lsp-mode yasnippet lsp-treemacs projectile hydra flycheck company avy ivy which-key dap-mode neotree all-the-icons gruber-darker-theme dashboard powerline page-break-lines evil)))
 
