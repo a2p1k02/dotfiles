@@ -6,7 +6,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
-(setq package-selected-packages '(lsp-mode yasnippet lsp-treemacs projectile hydra flycheck company avy ivy which-key dap-mode neotree all-the-icons dashboard powerline page-break-lines slime))
+(setq package-selected-packages '(lsp-mode yasnippet lsp-treemacs projectile hydra flycheck company avy ivy which-key catppuccin-theme dap-mode neotree all-the-icons dashboard powerline page-break-lines slime))
 
 (when (cl-find-if-not #'package-installed-p package-selected-packages)
   (package-refresh-contents)
