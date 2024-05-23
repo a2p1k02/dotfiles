@@ -2,7 +2,11 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
-(setq package-selected-packages '(lsp-mode yasnippet lsp-treemacs projectile hydra flycheck company avy ivy which-key dap-mode neotree all-the-icons spacemacs-theme dashboard powerline page-break-lines slime))
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+
+(setq package-selected-packages '(lsp-mode yasnippet lsp-treemacs projectile hydra flycheck company avy ivy which-key dap-mode neotree all-the-icons dashboard powerline page-break-lines slime))
 
 (when (cl-find-if-not #'package-installed-p package-selected-packages)
   (package-refresh-contents)
@@ -112,5 +116,5 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(package-selected-packages
-   '(slime lsp-mode yasnippet lsp-treemacs projectile hydra flycheck company avy ivy which-key dap-mode neotree all-the-icons gruber-darker-theme dashboard powerline page-break-lines evil)))
+   '(slime lsp-mode yasnippet lsp-treemacs projectile hydra flycheck company avy ivy which-key dap-mode neotree all-the-icons dashboard powerline page-break-lines evil)))
 
