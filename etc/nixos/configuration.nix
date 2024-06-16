@@ -11,9 +11,19 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    grub = {
+      enable = true;
+      devices = [ "nodev" ];
+      efiSupport = true;
+      useOSProber = true;
+    };
+  };
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
 
+  hardware.pulseaudio.enable = true;
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -23,9 +33,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Enable network manager applet
-  programs.nm-applet.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -45,38 +52,36 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
+   };
+  
+  # Set display manager
+  services.displayManager.defaultSession = "none+awesome";
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-    displayManager.lightdm.enable = false;
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    videoDrivers = [ "amdgpu" ];
+    windowManager.awesome.enable = true;
+    xkb.layout = "us, ru";
+    xkb.variant = "";
+    xkb.options = "grp:left_shift_alt_toggle";
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # Remove bloated sudo. Using doas
+  security.doas.enable = true;
+  security.sudo.enable = false;
+  security.doas.extraRules = [{
+    users = ["a2p1k02"];
+    keepEnv = true;
+    persist = true;
+  }];
+
+  # Change default terminal shell
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.a2p1k02 = {
@@ -84,34 +89,37 @@
     description = "a2p1k02";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
+      neovim
+      firefox
+      telegram-desktop
+      git
+      cargo
+      rust-analyzer
+      discord
+      alacritty
+      unzip
+      ranger
+      jetbrains-mono
+      fastfetch
+      noto-fonts-cjk
+      pavucontrol
+      python3
+      nerdfonts
     ];
   };
 
-  # Install programs.
-  programs.hyprland.enable = true;
-  programs.firefox.enable = true;
-  programs.fish.enable = true;
-
-  # Change shell
-  users.defaultUserShell = pkgs.fish;
+  fonts.packages = with pkgs; [
+    noto-fonts-cjk
+    jetbrains-mono
+    nerdfonts
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  fonts.packages = with pkgs; [
-    noto-fonts-cjk
-    jetbrains-mono
-  ];
-
   environment.systemPackages = with pkgs; [
-    pkgs.telegram-desktop
-    pkgs.neovim
-    pkgs.alacritty
-    pkgs.jetbrains-mono
-    pkgs.swww
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
@@ -141,6 +149,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
 }
