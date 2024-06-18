@@ -12,11 +12,7 @@ return require('packer').startup(function()
 
   use { "catppuccin/nvim", as = "catppuccin" }
 
-  --use 'ful1e5/onedark.nvim'
-    
-  --use 'rmehri01/onenord.nvim'
-
-  --use 'a2p1k02/dark-onenord'
+  use { 'nvim-tree/nvim-tree.lua' }
 
   use 'windwp/nvim-autopairs'
 

@@ -4,6 +4,7 @@ require('nvim-autopairs').setup  {}
 require'lspconfig'.clangd.setup  {}
 require'lspconfig'.pyright.setup {}
 require'nvim-web-devicons'.get_icons()
+require("nvim-tree").setup()
 
 vim.o.number=true
 vim.o.swapfile=false 
