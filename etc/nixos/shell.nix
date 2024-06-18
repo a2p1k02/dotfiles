@@ -2,6 +2,8 @@
 with pkgs;
 mkShell {
   buildInputs = [
+    gcc
+    pkg-config
     glslang
     vulkan-headers
     vulkan-loader
@@ -9,4 +11,10 @@ mkShell {
     glm
     glfw
   ];
+
+  nativeBuildInputs = [
+    rustc cargo gcc rustfmt clippy pkg-config fontconfig
+  ];
+
+  RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 }
