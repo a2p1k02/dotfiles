@@ -58,16 +58,16 @@
    };
   
   # Set display manager
-  services.displayManager.defaultSession = "none+awesome";
+  #services.displayManager.defaultSession = "none+awesome";
 
   # Configure keymap in X11
   services.xserver = {
-    enable = true;
+    enable = false;
     videoDrivers = [ "amdgpu" ];
-    windowManager.awesome.enable = true;
+    #windowManager.awesome.enable = true;
     xkb.layout = "us, ru";
     xkb.variant = "";
-    xkb.options = "grp:left_shift_alt_toggle";
+    xkb.options = "grp:alt_shift_toggle";
   };
 
   # Remove bloated sudo. Using doas
@@ -89,6 +89,8 @@
     description = "a2p1k02";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      gcc
+      clang
       neovim
       firefox
       telegram-desktop
@@ -105,6 +107,27 @@
       pavucontrol
       python3
       nerdfonts
+      lxappearance
+      waybar
+      swww
+      wofi
+      font-awesome
+      grim
+      slurp
+      mesa
+      vulkan-tools
+      vulkan-loader
+      vulkan-headers
+      vulkan-validation-layers
+      cmake
+      gnumake
+      btop
+      wayland-scanner
+      glm
+      glfw
+      anki
+      clang-tools
+      glslang
     ];
   };
 
@@ -112,7 +135,13 @@
     noto-fonts-cjk
     jetbrains-mono
     nerdfonts
+    font-awesome
   ];
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -152,3 +181,4 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
+
