@@ -21,7 +21,8 @@ List of programs and tools I use.
 
 
 ## 🎸 Preview
-![20240515_20h03m03s_grim](https://github.com/a2p1k02/dotfiles/assets/35633190/fe470619-eb3a-4751-a847-eacb0c0641ca)
+![image](https://github.com/a2p1k02/dotfiles/assets/35633190/33a517ad-48bf-47f4-9029-161e2cad698f)
+
 
 ## Emacs setup
 ```mkdir -p ~/.emacs.d/
