@@ -21,8 +21,7 @@ List of programs and tools I use.
 
 
 ## 🎸 Preview
-![image](https://github.com/a2p1k02/dotfiles/assets/35633190/cc154aba-e404-48a9-aace-bec84179c095)
-
+![image](https://github.com/a2p1k02/dotfiles/assets/35633190/c265405c-9a4b-4482-a926-33ddeb13aa12)
 
 
 ## Emacs setup
